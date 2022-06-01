@@ -57,5 +57,35 @@ namespace HashTablesAndBST
         {
             Console.WriteLine("Size: " + (1 + this.leftCount + this.rightCount));
         }
+
+        bool reuslt = false;
+        public bool Search(T element, BinarySearchTree<T> node)
+        {
+
+            if (node == null)
+            {
+                return false;
+            }
+            if (node.NodeData.Equals(element))
+            {
+                Console.WriteLine("Found the element in BST" + " " + node.NodeData);
+                reuslt = true;
+            }
+            else
+            {
+                Console.WriteLine("Current element is {0} in BST", node.NodeData);
+
+            }
+
+            if (element.CompareTo(node.NodeData) < 0)
+            {
+                Search(element, node.LeftTree);
+            }
+            else if (element.CompareTo(node.NodeData) > 0)
+            {
+                Search(element, node.RightTree);
+            }
+            return reuslt;
+        }
     }
 }
