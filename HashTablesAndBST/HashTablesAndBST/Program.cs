@@ -6,8 +6,8 @@ namespace HashTablesAndBST
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("1.Create BTS \n2.Size Method in BTS \n3.Search Element \n4.My Map Node" +
-                "\n5.Frequency of word");
+            Console.WriteLine("1.Create BTS \n2.Size Method in BTS \n3.Search Element \n4.Frequency Of Word" +
+                "\n5.Frequency of word in paragraph");
             Console.WriteLine("Enter a option");
             int option = Convert.ToInt32(Console.ReadLine());
             BinarySearchTree<int> binarySearch = new BinarySearchTree<int>(56);
@@ -74,8 +74,27 @@ namespace HashTablesAndBST
                         break;
                     }
                 case 5:
-
-                    break;
+                    {
+                        {
+                            string givenPhrase = "Paranoids are not paranoid because they are paranoid but because " +
+                                                   "they keep putting themselves deliberately into paranoid avoidable situations";
+                            string[] arrayOfPhrase = givenPhrase.Split(" ");
+                            var distinctWords = arrayOfPhrase.Distinct();
+                            int length = arrayOfPhrase.Length;
+                            HashTables<int, string> myHash = new HashTables<int, string>(arrayOfPhrase.Length);
+                            int i = 0;
+                            foreach (string data in arrayOfPhrase)
+                            {
+                                myHash.Add(i, data);
+                                i++;
+                            }
+                            foreach (string data in distinctWords)
+                            {
+                                Console.WriteLine(data + ": " + myHash.FrequencyOfWords(data));
+                            }
+                            break;
+                        }
+                    }
 
                 default:
                     {
