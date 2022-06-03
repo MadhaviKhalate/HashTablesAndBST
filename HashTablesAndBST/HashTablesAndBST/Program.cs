@@ -7,7 +7,7 @@ namespace HashTablesAndBST
         public static void Main(string[] args)
         {
             Console.WriteLine("1.Create BTS \n2.Size Method in BTS \n3.Search Element \n4.Frequency Of Word" +
-                "\n5.Frequency of word in paragraph");
+                "\n5.Frequency of word in paragraph \n6.Remove Avoidable Word");
             Console.WriteLine("Enter a option");
             int option = Convert.ToInt32(Console.ReadLine());
             BinarySearchTree<int> binarySearch = new BinarySearchTree<int>(56);
@@ -76,24 +76,52 @@ namespace HashTablesAndBST
                 case 5:
                     {
                         {
-                            string givenPhrase = "Paranoids are not paranoid because they are paranoid but because " +
-                                                   "they keep putting themselves deliberately into paranoid avoidable situations";
+                            string givenPhrase = "Paranoids are not paranoid because they " +
+                                "are paranoid but because they keep putting themselves " +
+                                "deliberately into paranoid avoidable situations";
                             string[] arrayOfPhrase = givenPhrase.Split(" ");
                             var distinctWords = arrayOfPhrase.Distinct();
                             int length = arrayOfPhrase.Length;
-                            HashTables<int, string> myHash = new HashTables<int, string>(arrayOfPhrase.Length);
+                            HashTables<int, string> HashTable = new HashTables<int, string>(arrayOfPhrase.Length);
                             int i = 0;
                             foreach (string data in arrayOfPhrase)
                             {
-                                myHash.Add(i, data);
+                                HashTable.Add(i, data);
                                 i++;
                             }
                             foreach (string data in distinctWords)
                             {
-                                Console.WriteLine(data + ": " + myHash.FrequencyOfWords(data));
+                                Console.WriteLine(data + ": " + HashTable.FrequencyOfWords(data));
                             }
                             break;
                         }
+                    }
+                case 6:
+                    {
+                        string givenPhrase = "Paranoids are not paranoid because they are paranoid" +
+                            " \n but because they keep putting themselves deliberately " +
+                            "\n into paranoid avoidable situations";
+
+                        string[] arrayOfPhrase = givenPhrase.Split(" ");
+                        int length1 = arrayOfPhrase.Length;
+                        HashTables<int, string> HashTable = new HashTables<int, string>(arrayOfPhrase.Length);
+                        int j = 0;
+                        foreach (string data in arrayOfPhrase)
+                        {
+                            HashTable.Add(j, data);
+                            j++;
+                        }
+
+                        foreach (string data in arrayOfPhrase)
+                        {
+                            if (data == "avoidable")
+                            {
+                                HashTable.Remove(0);
+                                continue;
+                            }
+                            Console.Write(String.Join("", data, " "));
+                        }
+                        break;
                     }
 
                 default:
